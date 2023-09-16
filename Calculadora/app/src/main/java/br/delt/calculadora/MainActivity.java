@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBackspace(View view)
     {
-
         operationsDisp = operationsDisp.length()==1 ? "0": operationsDisp.substring(0,operationsDisp.length() -1);
         optText.setText(operationsDisp);
     }

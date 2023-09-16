@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow"> #FFC107</color>
+    <color name="green"> #6ca965 </color>
+    <color name="keyboard_bg_on">#7C0B0B0B </color>
+    <color name="background"> #534D4D </color>
+    <color name="keyboard_bg_off"> #534D4D  </color>
+</resources>
