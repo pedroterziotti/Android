@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.PendingIntent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,15 +22,24 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.content.Context;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.Normalizer;
 import java.util.Locale;
+import java.util.Random;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
     public TableLayout table;
-    final static String palavra= "karma".toUpperCase();
+    static String palavra= "karma".toUpperCase();
+    static String palavra_original= "karma".toUpperCase();
+    JSONArray palavras;
     public static int[] cursor = {0,0}; // 6 linhas e 5 colunas
 
     final int limite_linhas =5;
@@ -42,7 +52,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Random rand = new Random();
         table = findViewById(R.id.table);
+        try {
+
+            JSONObject obj = new JSONObject(loadJSONFromAsset());
+            palavras = obj.getJSONArray("palavras");
+            palavra_original = palavras.get(rand.nextInt(palavras.length())).toString().toUpperCase();
+            palavra = removeAccentsBeforeJava7(palavra_original);
+        }
+        catch (Exception e){}
+
+
     }
     public void cursorMover(View view)
     {
@@ -64,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             TextView element = (TextView) ((TableRow) table.getChildAt(cursor[0])).getChildAt(i);
             tentativa+=element.getText();
         }
-        if(tentativa.length() < palavra.length()) return; //checks if valid
+        if(tentativa.length() < palavra.length() || !removeAccentsBeforeJava7(palavras.toString().toUpperCase()).contains(tentativa)) return; //checks if valid
 
         String editPalavra = palavra;
         for(int i=0; i <= limite_colunas;i++)
@@ -90,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     TextView key =(TextView) findViewById(getResources().getIdentifier(element.getText().toString().toLowerCase(),"id",getPackageName()));
                     //key.setClickable(false);
                     key.setBackground(new ColorDrawable(getResources().getColor(R.color.keyboard_bg_off, null)));
+                    key.setTextColor(getResources().getColor(R.color.black, null));
                 }
             }
             catch (Exception e) {return;}
@@ -156,10 +178,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void reset(View view)
     {
+        cursor = new int[]{0,0};
         finish();
         startActivity(getIntent());
     }
 
-
+    public static String removeAccentsBeforeJava7(String value) {
+        String normalizer = Normalizer.normalize(value, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("[^\\p{ASCII}]");
+        return pattern.matcher(normalizer).replaceAll("");
+    }
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = this.getAssets().open("palavras.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
 
 }
