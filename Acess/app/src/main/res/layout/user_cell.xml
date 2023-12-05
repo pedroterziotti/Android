@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/cellImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:background="@color/red"
+        android:layout_marginLeft="0dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/cellName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Colaborador"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:gravity="center_horizontal"/>
+
+
+    <TextView
+        android:id="@+id/cellCargo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cargo"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/cellLastAcess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Último acesso em: dd/mm/aa"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+</LinearLayout>

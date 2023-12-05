@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NOVO CARTÃO DETECTADO"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/dialogNewRFIDTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RFID: FF FF FF FF"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"/>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/dialogNewADDButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="saveUser"
+            android:text="ADICIONAR"
+            android:textSize="15dp"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/dark_gray_hard"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/dialogNewRejectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="deleteUser"
+            android:text="REJEITAR"
+            android:textSize="15dp"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/dark_gray_hard"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

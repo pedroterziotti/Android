@@ -100,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void rfidFound(String rfid)
+    {
+        Log.e("MESSAGE",rfid.substring(rfid.length()-8));
+
+    }
+
     private class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final BluetoothDevice mmDevice;
@@ -190,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void run() {
-                mmBuffer = new byte[1024];
+                mmBuffer = new byte[12];
                 int numBytes; // bytes returned from read()
 
                 // Keep listening to the InputStream until an exception occurs.
@@ -202,7 +208,13 @@ public class MainActivity extends AppCompatActivity {
                         Message readMsg = handler.obtainMessage(
                                 MESSAGE_READ, numBytes, -1,
                                 mmBuffer);
-                        Log.e("MESSAGE",new String(mmBuffer, StandardCharsets.UTF_8));
+                        String id= new String(mmBuffer, StandardCharsets.UTF_8).trim();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                rfidFound(id);
+                            }
+                        });
                         readMsg.sendToTarget();
                     } catch (IOException e) {
                         Log.d("TAG", "Input stream was disconnected", e);

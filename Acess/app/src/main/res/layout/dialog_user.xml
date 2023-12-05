@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/dialogUserImage"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/red"/>
+
+    <TextView
+        android:id="@+id/dialogUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome Sobrenome"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/dialogUserCargo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CARGO"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Último acesso em:"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialogUserLastAcess"
+        android:text="16/10/1999"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/dialogUserAcceptButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="saveUser"
+            android:text="AUTORIZAR"
+            android:textSize="19dp"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/dark_gray_hard"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/dialogUserRejectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="deleteUser"
+            android:text="REJEITAR"
+            android:textSize="20dp"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/dark_gray_hard"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
